@@ -10,6 +10,7 @@ public class MetroMendeley {
         Functions functions = new Functions();
         String w = functions.readText();
         System.out.println(w);
+        functions.createObjects(w);
     }
     
 }
