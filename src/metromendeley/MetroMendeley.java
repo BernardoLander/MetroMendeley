@@ -1,5 +1,7 @@
 
 package metromendeley;
+import ventana.Inicio;
+
 
 public class MetroMendeley {
 
@@ -9,8 +11,8 @@ public class MetroMendeley {
     public static void main(String[] args) {
         Functions functions = new Functions();
         String w = functions.readText();
-        System.out.println(w);
-        functions.createObjects(w);
+        Inicio fw = new Inicio();
+        fw.setVisible(true);
     }
     
 }

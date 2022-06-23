@@ -17,7 +17,7 @@ public class Functions {
     public String readText() {
         String line;
         String Text = "";
-        String path = "test\\resumen2.txt";
+        String path = "test\\resumen1.txt";
         File file = new File(path);
         try {
             if (!file.exists()) {
@@ -39,44 +39,58 @@ public class Functions {
         return Text;
     }
     
-    public infoObject createObjects(String Text){
+    public infoObject createObjects(String Text){  
+        
+        //Crea los objetos que compone el resumen entero 
+        
         infoObject info = new infoObject();
-        String title = null;
-        String[] autores = null;
-        String summary = null;
-        String[] keywords = null;
+        String title = "";
+        String autor = "";
+        String summary = "";
+        String keyword = "";
         int aux = 0;
-        if (!"".equals(Text)){
-            
-            String[] textLineSplit = Text.split("\n");
+        if (!"".equals(Text)){   
+            String[] textLineSplit = Text.split("\n");           
             for (int i = 0; i < textLineSplit.length; i++) {
-                while(!textLineSplit[i].equals("autores")){
-                    title += textLineSplit[i];
-                    aux = i;
+                if (textLineSplit[i].equals("Autores")) {
+                    break;
+                }   
+                aux += 1;
+                title += " "+textLineSplit[i];  // se crea el titulo
+            }
+            title = title.replace("\n", " ").trim();
+            
+            for (int i = aux + 1; i < textLineSplit.length; i++) { 
+                if (textLineSplit[i].equals("Resumen")) {
+                    break;
+                }  
+                aux += 1;
+                autor += textLineSplit[i] + ",";   // se crean los autores string                      
+               } 
+ 
+            for (int i = aux + 1 ; i < textLineSplit.length; i++) { // pendiente con el +1 del aux
+                if (textLineSplit[i].contains("Palabras claves:") || textLineSplit[i].contains("Palabras Claves:")) {
+                    break;
+                }  
+                aux += 1;
+                summary += " "+textLineSplit[i];     //  se crea el resumen               
+               }
+            summary = summary.replace("Resumen", "").trim();
+            
+            
+            for (int i = aux + 1; i < textLineSplit.length; i++){ 
+                keyword += textLineSplit[i];
                 }
             }
-            for (int i = aux; i < textLineSplit.length; i++) {
-                while(!textLineSplit[i].equals("Resumen")){
-                    for (int j = 0; j < 10; j++) {
-                         autores[j] = textLineSplit[i];
-                         aux = i;
-                    }
-                }
-            }
-            for (int i = aux; i < textLineSplit.length; i++) {
-                while(!textLineSplit[i].contains("Palabras claves:")){
-                    summary += textLineSplit;
-                    aux = i;
-                }
-            }
-            for (int i = aux; i < 10; i++) {
-                if (textLineSplit[i].contains("Palabras claves:")) {
-                    for (int j = 0; j < 10; j++) {
-                        keywords = textLineSplit[i].split(",");
-                    }
-                }
-            }                   
-        }
+            if (keyword.contains("Palabras claves:") || keyword.contains("Palabras Claves:")) {
+                    keyword = keyword.replace("Palabras claves: ", "").replace("y", ",").replace(".", "").replace(", ", ",");
+                    keyword = keyword.replace("Palabras Claves: ", "").replace("y", ",").replace(".", "").replace(", ", ",");
+                }  
+            String[] keywords = keyword.split(","); // se crean palabras claves string[]
+           
+               
+        String[] autores = autor.split(",");
+        
         info.setTitle(title);
         info.setAutores(autores);
         info.setSummary(summary);
