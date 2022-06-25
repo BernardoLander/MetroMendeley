@@ -4,6 +4,13 @@
  */
 package ventana;
 
+import java.io.File;
+import javax.swing.JFileChooser;
+import metromendeley.Functions;
+import metromendeley.GlobalVariables;
+import metromendeley.infoObject;
+
+
 /**
  *
  * @author leste
@@ -16,7 +23,6 @@ public class Agregar extends javax.swing.JFrame {
     public Agregar() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.setResizable(false);
     }
 
     /**
@@ -31,6 +37,9 @@ public class Agregar extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        PathDisplay = new javax.swing.JTextField();
+        Agregar = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -44,13 +53,40 @@ public class Agregar extends javax.swing.JFrame {
 
         Salir.setBackground(new java.awt.Color(153, 153, 255));
         Salir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        Salir.setText("Salir");
+        Salir.setText("Menu");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalirActionPerformed(evt);
             }
         });
         jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 110, 50));
+
+        jButton1.setBackground(new java.awt.Color(204, 204, 255));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton1.setText("Elegir");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 80, 40));
+
+        PathDisplay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PathDisplayActionPerformed(evt);
+            }
+        });
+        jPanel1.add(PathDisplay, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, 320, 40));
+
+        Agregar.setBackground(new java.awt.Color(255, 255, 102));
+        Agregar.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        Agregar.setText("Agregar");
+        Agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 230, 100, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/agregar1.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
@@ -66,6 +102,28 @@ public class Agregar extends javax.swing.JFrame {
         this.setVisible(false);
         m.setVisible(true);
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        JFileChooser fc = new JFileChooser();
+        int selection = fc.showOpenDialog(this);
+        
+        if (selection == JFileChooser.APPROVE_OPTION) {
+            File path = fc.getSelectedFile();
+            PathDisplay.setText(path.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void PathDisplayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PathDisplayActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PathDisplayActionPerformed
+
+    private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
+        GlobalVariables.setPath(PathDisplay.getText());
+        Functions functions = new Functions();
+        String w = functions.readText();
+        infoObject summary = functions.createObjects(w);
+        //falta meterlo aqui en el hashtable
+    }//GEN-LAST:event_AgregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -103,7 +161,10 @@ public class Agregar extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Agregar;
+    private javax.swing.JTextField PathDisplay;
     private javax.swing.JButton Salir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
