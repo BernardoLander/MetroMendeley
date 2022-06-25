@@ -4,6 +4,11 @@
  */
 package ventana;
 
+import javax.swing.JOptionPane;
+import metromendeley.Functions;
+import metromendeley.GlobalVariables;
+import metromendeley.infoObject;
+
 /**
  *
  * @author leste
@@ -78,6 +83,19 @@ public class Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Functions functions = new Functions();
+        String w = functions.readText("test\\total.txt");
+        String[] textLineSplit = w.split("\n");
+        for (int i = 0; i < textLineSplit.length; i++) {
+            String summary = functions.readText(textLineSplit[i]);
+            infoObject object = functions.createObjects(summary);
+            if (!GlobalVariables.getTable().buscar2(object)) {
+                GlobalVariables.getTable().insertar(object);   
+            }
+            else{
+                System.out.println("p");
+            } 
+        }
         Menu m = new Menu();
         this.setVisible(false);
         m.setVisible(true);

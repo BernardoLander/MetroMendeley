@@ -9,20 +9,20 @@ package metromendeley;
  * @author leste
  */
 public class GlobalVariables {
-    private static String path = "";
+    private static HashTable1 table = new HashTable1(1000);
 
     /**
-     * @return the path
+     * @return the table
      */
-    public static String getPath() {
-        return path;
+    public static HashTable1 getTable() {
+        return table;
     }
 
     /**
-     * @param aPath the path to set
+     * @param aTable the table to set
      */
-    public static void setPath(String aPath) {
-        path = aPath;
+    public static void setTable(HashTable1 aTable) {
+        table = aTable;
     }
     
 }

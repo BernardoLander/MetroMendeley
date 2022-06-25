@@ -6,7 +6,10 @@ package metromendeley;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.PrintWriter;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -14,10 +17,9 @@ import java.io.FileReader;
  */
 public class Functions {
     
-    public String readText() {
+    public String readText(String path) {
         String line;
         String Text = "";
-        String path = GlobalVariables.getPath()";
         File file = new File(path);
         try {
             if (!file.exists()) {
@@ -98,5 +100,18 @@ public class Functions {
         
         return info;
     }
+    
+    public void writeText(String summary){
+        try {
+            String path = "test\\total.txt";
+            PrintWriter pw = new PrintWriter(new FileOutputStream(new File("test\\total.txt"), true ));
+            pw.append("\n" + summary);
+            pw.close();
+        } catch (Exception err) {
+            JOptionPane.showMessageDialog(null, err);
+        }      
+    }
+    
+    
        
 }
