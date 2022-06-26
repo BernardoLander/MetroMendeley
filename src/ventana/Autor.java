@@ -183,7 +183,12 @@ public final class Autor extends javax.swing.JFrame {
             for(int i = 0; i < itemCount; i++){
             Investigaciones.removeItemAt(0);
             }
-        AllSummaries();
+        if (Autores.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "No agrego ningun elemento.");
+        }
+        else{
+            AllSummaries();
+        }  
     }//GEN-LAST:event_crearInvestigacionesActionPerformed
 
     /**
