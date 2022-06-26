@@ -4,6 +4,8 @@
  */
 package metromendeley;
 
+import java.util.Objects;
+
 /**
  *
  * @author leste
@@ -13,12 +15,14 @@ public class infoObject {
     private String[] autores;
     private String summary;
     private String[] keywords;
+    private int id;
     
     public infoObject(){
         title = null;
         autores = null;
         summary = null;
         keywords = null;
+        id = -1;
     }
 
     /**
@@ -75,6 +79,41 @@ public class infoObject {
      */
     public void setKeywords(String[] keywords) {
         this.keywords = keywords;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId() {
+        if (hashCode() < 0){
+            this.id = hashCode()*-1;
+        }else{
+            this.id = hashCode();
+        }
+    }
+    
+    public int hashCode() {
+        int hash = 5;
+        hash = 37 * hash + Objects.hashCode(this.title);
+        return hash;
+    }
+
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final infoObject other = (infoObject) obj;
+        if (!Objects.equals(this.title, other.title)) {
+            return false;
+        }
+        return true;
     }
     
 }

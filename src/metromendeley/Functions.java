@@ -17,7 +17,7 @@ public class Functions {
     public String readText() {
         String line;
         String Text = "";
-        String path = GlobalVariables.getPath()";
+        String path = GlobalVariables.getPath();
         File file = new File(path);
         try {
             if (!file.exists()) {
