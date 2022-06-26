@@ -67,7 +67,7 @@ public class Functions {
                     break;
                 }  
                 aux += 1;
-                autor += textLineSplit[i] + ",";   // se crean los autores string                      
+                autor += textLineSplit[i].replace("-", " ") + ",";   // se crean los autores string                      
                } 
  
             for (int i = aux + 1 ; i < textLineSplit.length; i++) { // pendiente con el +1 del aux
@@ -124,5 +124,5 @@ public class Functions {
         }
         return contador;
     }
-       
+     
 }

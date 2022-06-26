@@ -129,6 +129,7 @@ public class Agregar extends javax.swing.JFrame {
             if (!GlobalVariables.getTable().buscar2(summary)) {
                 GlobalVariables.getTable().insertar(summary);
                 GlobalVariables.getLista().insertEnd(summary.getTitle());
+                GlobalVariables.getObjetos().insertEnd(summary);
                 functions.writeText(PathDisplay.getText());
             }
             else{
