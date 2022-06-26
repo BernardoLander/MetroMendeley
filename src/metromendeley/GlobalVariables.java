@@ -11,6 +11,7 @@ package metromendeley;
 public class GlobalVariables {
     private static HashTable1 table = new HashTable1(1000);
     private static List lista = new List(null);
+    private static ListObject objetos = new ListObject(null);
 
     /**
      * @return the table
@@ -38,6 +39,20 @@ public class GlobalVariables {
      */
     public static void setLista(List aLista) {
         lista = aLista;
+    }
+
+    /**
+     * @return the objetos
+     */
+    public static ListObject getObjetos() {
+        return objetos;
+    }
+
+    /**
+     * @param aObjetos the objetos to set
+     */
+    public static void setObjetos(ListObject aObjetos) {
+        objetos = aObjetos;
     }
     
 }

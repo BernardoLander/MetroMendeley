@@ -82,7 +82,7 @@ public final class analisis extends javax.swing.JFrame {
 
         Salir.setBackground(new java.awt.Color(255, 255, 153));
         Salir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        Salir.setText("Salir");
+        Salir.setText("Menu");
         Salir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SalirActionPerformed(evt);
@@ -125,17 +125,8 @@ public final class analisis extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "No agrego ningun elemento.");
         }
         else{
-        infoObject info = GlobalVariables.getTable().buscarObjeto(String.valueOf(Titulos.getSelectedItem()));
-        String p = "";
-        p += "Titulo: " + info.getTitle() + "\n" + "Autores:" + "\n";
-        for (int i = 0; i < info.getAutores().length; i++) {
-            p += info.getAutores()[i] + "\n";
-        }
-        p += "Palabras claves: \n";
-        for (int i = 0; i < info.getKeywords().length; i++) {
-            p += info.getKeywords()[i] + ": " + v.countWords(info.getSummary(), info.getKeywords()[i]) + "\n";
-        }
-        Info.setText(p);
+            String p = GlobalVariables.getTable().buscarObjeto(String.valueOf(Titulos.getSelectedItem())).createInfo();
+            Info.setText(p);
         }
     }//GEN-LAST:event_agregarActionPerformed
 

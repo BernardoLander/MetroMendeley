@@ -91,7 +91,8 @@ public class Inicio extends javax.swing.JFrame {
             infoObject object = functions.createObjects(summary);
             if (!GlobalVariables.getTable().buscar2(object)) {
                 GlobalVariables.getLista().insertEnd(object.getTitle());
-                GlobalVariables.getTable().insertar(object);   
+                GlobalVariables.getTable().insertar(object);
+                GlobalVariables.getObjetos().insertEnd(object);
             }
         }
         Menu m = new Menu();

@@ -4,6 +4,8 @@
  */
 package metromendeley;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author leste
@@ -77,4 +79,20 @@ public class infoObject {
         this.keywords = keywords;
     }
     
+    public String createInfo(){
+        Functions v = new Functions();
+        String p = "";
+        p += "Titulo: " + getTitle() + "\n" + "Autores:" + "\n";
+        for (int i = 0; i < getAutores().length; i++) {
+            p += getAutores()[i] + "\n";
+        }
+        p += "Palabras claves: \n";
+        for (int i = 0; i < getKeywords().length; i++) {
+            p += getKeywords()[i] + ": " + v.countWords(getSummary(), getKeywords()[i]) + "\n";
+        }
+        return p;
+    }
+
 }
+    
+

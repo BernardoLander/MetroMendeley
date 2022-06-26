@@ -7,7 +7,7 @@ package metromendeley;
 
 /**
  *
- * @author dario
+ * @author leste
  */
 public class Nodo {
     private Nodo left; 
