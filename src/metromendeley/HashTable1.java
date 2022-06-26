@@ -85,7 +85,6 @@ public class HashTable1 {
             if (temp.getData().getTitle().equals(summary.getTitle())){
                 existe = true; 
                 JOptionPane.showMessageDialog(null, "Ya existe el elemento. No se agrega.");
-                System.out.println("hola");
                 
             }
             
@@ -168,9 +167,18 @@ public class HashTable1 {
         }
         
         return existe;
-    }
-
+    }     
     
+    public infoObject buscarObjeto(String title){ 
+        int cont = 0;
+        Nodo temp = this.tabla[cont];
+        while (temp == null || !temp.getData().getTitle().equals(title)){
+            cont++;
+            temp = this.tabla[cont];  
+        }
+        
+        return temp.getData();
+    }   
     
     public void vaciar(){
         for (int i = 0; i < size; i++) {

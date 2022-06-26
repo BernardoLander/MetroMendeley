@@ -112,6 +112,17 @@ public class Functions {
         }      
     }
     
-    
+    public int countWords(String summary, String palabra){
+        int contador = 0;
+        summary = summary.toLowerCase();
+        palabra = palabra.toLowerCase();
+
+        while (summary.contains(palabra)) {
+            summary = summary.substring(summary.indexOf(
+            palabra) + palabra.length(), summary.length());
+            contador++;
+        }
+        return contador;
+    }
        
 }

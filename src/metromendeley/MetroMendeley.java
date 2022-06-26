@@ -12,7 +12,5 @@ public class MetroMendeley {
         Inicio fw = new Inicio();
         fw.setVisible(true);
 
-        
-    }
-    
+    }   
 }

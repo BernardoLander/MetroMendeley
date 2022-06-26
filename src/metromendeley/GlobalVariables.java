@@ -10,6 +10,7 @@ package metromendeley;
  */
 public class GlobalVariables {
     private static HashTable1 table = new HashTable1(1000);
+    private static List lista = new List(null);
 
     /**
      * @return the table
@@ -23,6 +24,20 @@ public class GlobalVariables {
      */
     public static void setTable(HashTable1 aTable) {
         table = aTable;
+    }
+
+    /**
+     * @return the lista
+     */
+    public static List getLista() {
+        return lista;
+    }
+
+    /**
+     * @param aLista the lista to set
+     */
+    public static void setLista(List aLista) {
+        lista = aLista;
     }
     
 }

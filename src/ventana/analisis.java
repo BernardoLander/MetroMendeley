@@ -4,11 +4,17 @@
  */
 package ventana;
 
+import metromendeley.GlobalVariables;
+import metromendeley.List;
+import metromendeley.Node;
+import metromendeley.Functions;
+import metromendeley.infoObject;
+
 /**
  *
  * @author leste
  */
-public class analisis extends javax.swing.JFrame {
+public final class analisis extends javax.swing.JFrame {
 
     /**
      * Creates new form analisis
@@ -17,6 +23,19 @@ public class analisis extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        AllTitles();
+    }
+    
+    public void AllTitles() {
+        List lista = GlobalVariables.getLista();
+        Node pointer = lista.getHead();
+        int index = 0;
+        while (pointer != null) {
+            String titulo = pointer.getElement();
+            Titulos.insertItemAt(titulo, index);
+            index++;
+            pointer = pointer.getNext();
+        }
     }
 
     /**
@@ -30,10 +49,11 @@ public class analisis extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        Titulos = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        Info = new javax.swing.JTextArea();
         Salir = new javax.swing.JButton();
+        agregar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,14 +65,19 @@ public class analisis extends javax.swing.JFrame {
         jLabel2.setText("Analizar Resumen");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 30, -1, -1));
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jPanel1.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 150, 40));
+        Titulos.setFont(new java.awt.Font("Times New Roman", 1, 12)); // NOI18N
+        Titulos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TitulosActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Titulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 110, 370, 40));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        Info.setColumns(20);
+        Info.setRows(5);
+        jScrollPane1.setViewportView(Info);
 
-        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, 220, 130));
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 160, 400, 150));
 
         Salir.setBackground(new java.awt.Color(255, 255, 153));
         Salir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -63,6 +88,16 @@ public class analisis extends javax.swing.JFrame {
             }
         });
         jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 100, 40));
+
+        agregar.setBackground(new java.awt.Color(204, 255, 204));
+        agregar.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        agregar.setText("Agregar");
+        agregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                agregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(agregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 80, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/analizar.png"))); // NOI18N
         jLabel1.setText("jLabel1");
@@ -78,6 +113,25 @@ public class analisis extends javax.swing.JFrame {
         this.setVisible(false);
         m.setVisible(true);
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void TitulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TitulosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TitulosActionPerformed
+
+    private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
+        Functions v = new Functions();
+        infoObject info = GlobalVariables.getTable().buscarObjeto(String.valueOf(Titulos.getSelectedItem()));
+        String p = "";
+        p += "Titulo: " + info.getTitle() + "\n" + "Autores:" + "\n";
+        for (int i = 0; i < info.getAutores().length; i++) {
+            p += info.getAutores()[i] + "\n";
+        }
+        p += "Palabras claves: \n";
+        for (int i = 0; i < info.getKeywords().length; i++) {
+            p += info.getKeywords()[i] + ": " + v.countWords(info.getSummary(), info.getKeywords()[i]) + "\n";
+        }
+        Info.setText(p);
+    }//GEN-LAST:event_agregarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,12 +169,13 @@ public class analisis extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Info;
     private javax.swing.JButton Salir;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> Titulos;
+    private javax.swing.JButton agregar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }
