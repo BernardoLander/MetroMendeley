@@ -6,6 +6,7 @@ package ventana;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import metromendeley.Functions;
 import metromendeley.GlobalVariables;
 import metromendeley.infoObject;
@@ -118,11 +119,24 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_PathDisplayActionPerformed
 
     private void AgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AgregarActionPerformed
-        GlobalVariables.setPath(PathDisplay.getText());
-        Functions functions = new Functions();
-        String w = functions.readText();
-        infoObject summary = functions.createObjects(w);
-        //falta meterlo aqui en el hashtable
+        if (PathDisplay.getText().isBlank()) {
+            JOptionPane.showMessageDialog(null, "No agrego ningun elemento");
+        }
+        else{ 
+            Functions functions = new Functions();
+            String w = functions.readText(PathDisplay.getText());
+            infoObject summary = functions.createObjects(w);
+            if (!GlobalVariables.getTable().buscar2(summary)) {
+                GlobalVariables.getTable().insertar(summary);
+                GlobalVariables.getLista().insertEnd(summary.getTitle());
+                functions.writeText(PathDisplay.getText());
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Ya existe el elemento. No se agrega.");
+            } 
+        }
+
+
     }//GEN-LAST:event_AgregarActionPerformed
 
     /**
