@@ -165,7 +165,6 @@ public class HashTable1 {
                 }
             }
         }
-        
         return existe;
     }     
     

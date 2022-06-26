@@ -34,6 +34,8 @@ public class Menu extends javax.swing.JFrame {
         AnalizarResumen = new javax.swing.JButton();
         BuscarCaracteristica = new javax.swing.JButton();
         Salir = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -53,7 +55,7 @@ public class Menu extends javax.swing.JFrame {
                 AgregarResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(AgregarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 80, 210, 80));
+        jPanel1.add(AgregarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 200, 70));
 
         AnalizarResumen.setBackground(new java.awt.Color(153, 153, 255));
         AnalizarResumen.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -63,17 +65,17 @@ public class Menu extends javax.swing.JFrame {
                 AnalizarResumenActionPerformed(evt);
             }
         });
-        jPanel1.add(AnalizarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 180, 200, 70));
+        jPanel1.add(AnalizarResumen, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 90, 200, 70));
 
         BuscarCaracteristica.setBackground(new java.awt.Color(255, 153, 153));
         BuscarCaracteristica.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
-        BuscarCaracteristica.setText("Buscar por característica");
+        BuscarCaracteristica.setText("Autor");
         BuscarCaracteristica.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BuscarCaracteristicaActionPerformed(evt);
             }
         });
-        jPanel1.add(BuscarCaracteristica, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 270, 240, 80));
+        jPanel1.add(BuscarCaracteristica, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 120, 80));
 
         Salir.setBackground(new java.awt.Color(153, 255, 153));
         Salir.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
@@ -85,6 +87,20 @@ public class Menu extends javax.swing.JFrame {
         });
         jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 350, 90, 40));
 
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel3.setText("Busqueda");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, 80, 20));
+
+        jButton1.setBackground(new java.awt.Color(255, 153, 153));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton1.setText("Palabra Clave");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 160, 80));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/menu.jpeg"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 400));
@@ -95,7 +111,7 @@ public class Menu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BuscarCaracteristicaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarCaracteristicaActionPerformed
-        busqueda b = new busqueda();
+        Autor b = new Autor();
         this.setVisible(false);
         b.setVisible(true);
     }//GEN-LAST:event_BuscarCaracteristicaActionPerformed
@@ -117,6 +133,12 @@ public class Menu extends javax.swing.JFrame {
         this.setVisible(false);
         an.setVisible(true);
     }//GEN-LAST:event_AnalizarResumenActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Palabra p = new Palabra();
+        this.setVisible(false);
+        p.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,8 +180,10 @@ public class Menu extends javax.swing.JFrame {
     private javax.swing.JButton AnalizarResumen;
     private javax.swing.JButton BuscarCaracteristica;
     private javax.swing.JButton Salir;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

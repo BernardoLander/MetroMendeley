@@ -4,6 +4,7 @@
  */
 package ventana;
 
+import javax.swing.JOptionPane;
 import metromendeley.GlobalVariables;
 import metromendeley.List;
 import metromendeley.Node;
@@ -120,6 +121,10 @@ public final class analisis extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         Functions v = new Functions();
+        if (Titulos.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "No agrego ningun elemento.");
+        }
+        else{
         infoObject info = GlobalVariables.getTable().buscarObjeto(String.valueOf(Titulos.getSelectedItem()));
         String p = "";
         p += "Titulo: " + info.getTitle() + "\n" + "Autores:" + "\n";
@@ -131,6 +136,7 @@ public final class analisis extends javax.swing.JFrame {
             p += info.getKeywords()[i] + ": " + v.countWords(info.getSummary(), info.getKeywords()[i]) + "\n";
         }
         Info.setText(p);
+        }
     }//GEN-LAST:event_agregarActionPerformed
 
     /**
