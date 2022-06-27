@@ -4,6 +4,11 @@
  */
 package ventana;
 
+import javax.swing.JOptionPane;
+import metromendeley.Functions;
+import metromendeley.GlobalVariables;
+import metromendeley.infoObject;
+
 /**
  *
  * @author leste
@@ -15,6 +20,8 @@ public class Inicio extends javax.swing.JFrame {
      */
     public Inicio() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -26,21 +33,77 @@ public class Inicio extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        SalirTotal = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 440, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 338, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel2.setFont(new java.awt.Font("Times New Roman", 1, 36)); // NOI18N
+        jLabel2.setText("MetroMendeley");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 30, -1, -1));
+
+        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jLabel3.setText("Administracion de articulos cientificos");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 80, -1, 20));
+
+        jButton1.setBackground(new java.awt.Color(255, 204, 255));
+        jButton1.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        jButton1.setText("Inicio!");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 140, 160, 80));
+
+        SalirTotal.setBackground(new java.awt.Color(153, 153, 255));
+        SalirTotal.setFont(new java.awt.Font("Times New Roman", 1, 18)); // NOI18N
+        SalirTotal.setText("Salir");
+        SalirTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SalirTotalActionPerformed(evt);
+            }
+        });
+        jPanel1.add(SalirTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 100, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/inicio1.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 400));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Functions functions = new Functions();
+        String w = functions.readText("test\\total.txt");
+        String[] textLineSplit = w.split("\n");
+        for (int i = 0; i < textLineSplit.length; i++) {
+            String summary = functions.readText(textLineSplit[i]);
+            infoObject object = functions.createObjects(summary);
+            if (!GlobalVariables.getTable().buscar2(object)) {
+                GlobalVariables.getLista().insertEnd(object.getTitle());
+                GlobalVariables.getTable().insertar(object);
+                GlobalVariables.getObjetos().insertEnd(object);
+            }
+        }
+        Menu m = new Menu();
+        this.setVisible(false);
+        m.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void SalirTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SalirTotalActionPerformed
+        //se puede hacer algo aqui
+        System.exit(0);
+    }//GEN-LAST:event_SalirTotalActionPerformed
 
     /**
      * @param args the command line arguments
@@ -78,5 +141,11 @@ public class Inicio extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton SalirTotal;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
