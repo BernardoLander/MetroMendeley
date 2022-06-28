@@ -8,6 +8,8 @@ import metromendeley.GlobalVariables;
 import metromendeley.HashTable2;
 import metromendeley.KeyWordObject;
 import metromendeley.HashTable1;
+import metromendeley.ListObject;
+import metromendeley.NodeObject;
 import metromendeley.infoObject;
 /**
  *
@@ -22,6 +24,22 @@ public class Palabra extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        AllPalabras();
+    }
+    
+    public void AllPalabras() {
+        ListObject lista = GlobalVariables.getObjetos();
+        NodeObject pointer = lista.getHead();
+        int index = 0;
+        while (pointer != null) {
+            infoObject summary = pointer.getElement();
+            String[] palabras = summary.getKeywords();
+            for (int i = 0; i < palabras.length; i++) {        
+                Palabras.insertItemAt(palabras[i], index);
+                index++;
+            }
+            pointer = pointer.getNext();
+        }
     }
 
     /**
@@ -36,11 +54,11 @@ public class Palabra extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
-        KeywordTextField = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         Buscarbtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         OutputTextArea = new javax.swing.JTextArea();
+        Palabras = new javax.swing.JComboBox<>();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -62,14 +80,7 @@ public class Palabra extends javax.swing.JFrame {
         });
         jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 100, 40));
 
-        KeywordTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                KeywordTextFieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(KeywordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, -1));
-
-        jLabel3.setText("Escriba la palabra clave por la que desea buscar:");
+        jLabel3.setText("Ingrese la palabra clave por la que desea buscar:");
         jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
 
         Buscarbtn.setText("Buscar");
@@ -86,6 +97,8 @@ public class Palabra extends javax.swing.JFrame {
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 420, 160));
 
+        jPanel1.add(Palabras, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 110, 180, -1));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/palabrasclaves.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 400));
 
@@ -100,13 +113,9 @@ public class Palabra extends javax.swing.JFrame {
         m.setVisible(true);
     }//GEN-LAST:event_SalirActionPerformed
 
-    private void KeywordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeywordTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_KeywordTextFieldActionPerformed
-
     private void BuscarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarbtnActionPerformed
         HashTable1 mainTable = GlobalVariables.getTable();
-        String keywordToSearch = KeywordTextField.getText();
+        String keywordToSearch = String.valueOf(Palabras.getSelectedItem());
         
         HashTable2 keywordTable = GlobalVariables.getKeywordTable();
         
@@ -159,8 +168,8 @@ public class Palabra extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buscarbtn;
-    private javax.swing.JTextField KeywordTextField;
     private javax.swing.JTextArea OutputTextArea;
+    private javax.swing.JComboBox<String> Palabras;
     private javax.swing.JButton Salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

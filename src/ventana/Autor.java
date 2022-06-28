@@ -28,7 +28,23 @@ public final class Autor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        AllAuthors();
         
+    }
+    
+    public void AllAuthors() {
+        ListObject lista = GlobalVariables.getObjetos();
+        NodeObject pointer = lista.getHead();
+        int index = 0;
+        while (pointer != null) {
+            infoObject summary = pointer.getElement();
+            String[] autores = summary.getAutores();
+            for (int i = 0; i < autores.length; i++) {        
+                Autores.insertItemAt(autores[i], index);
+                index++;
+            }
+            pointer = pointer.getNext();
+        }
     }
 
 
@@ -51,7 +67,7 @@ public final class Autor extends javax.swing.JFrame {
         jlabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         crearInvestigacionesBtn = new javax.swing.JButton();
-        autorNameTextField = new javax.swing.JTextField();
+        Autores = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,12 +130,7 @@ public final class Autor extends javax.swing.JFrame {
         });
         jPanel1.add(crearInvestigacionesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
 
-        autorNameTextField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                autorNameTextFieldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(autorNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 180, -1));
+        jPanel1.add(Autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -154,7 +165,7 @@ public final class Autor extends javax.swing.JFrame {
 
     private void crearInvestigacionesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearInvestigacionesBtnActionPerformed
         
-        String keywordToSearch = autorNameTextField.getText();
+        String keywordToSearch = String.valueOf(Autores.getSelectedItem());
         
         HashTable2 keywordTable = GlobalVariables.getKeywordTable();
         
@@ -173,10 +184,6 @@ public final class Autor extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_crearInvestigacionesBtnActionPerformed
-
-    private void autorNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autorNameTextFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_autorNameTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -215,10 +222,10 @@ public final class Autor extends javax.swing.JFrame {
     }
     private ListKeywordOBJ authorTextList;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> Autores;
     private javax.swing.JComboBox<String> InvestigacionesComboBox;
     private javax.swing.JTextArea OutputTextArea;
     private javax.swing.JButton Salir;
-    private javax.swing.JTextField autorNameTextField;
     private javax.swing.JButton crearInvestigacionesBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

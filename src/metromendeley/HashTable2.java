@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author dario
+ * @author leste
  */
 
 public class HashTable2 {
@@ -37,7 +37,7 @@ public class HashTable2 {
     public int hashingkeyword(String keyword){
         
         int valor = 0;  
-        //valor de la clave (nombre del animal) en 
+        //valor de la clave (nombre de la investigacion) en 
         //código ASCII a ser modificado.
         
         int posicion = 1; 
@@ -67,7 +67,7 @@ public class HashTable2 {
         int index = valor % size;
         /**
          * Index se refiere al índice del array del elemento.
-         * De esta manera adaptamos el valor del nombre del animal 
+         * De esta manera adaptamos el valor del nombre de la investigacion 
          * según código ASCII al tamaño de la tabla. 
          */
         return index; 
