@@ -7,11 +7,13 @@ package ventana;
 import javax.swing.JOptionPane;
 import metromendeley.Functions;
 import metromendeley.GlobalVariables;
-import metromendeley.List;
+import metromendeley.HashTable1;
+import metromendeley.HashTable2;
 import metromendeley.ListObject;
-import metromendeley.Node;
 import metromendeley.NodeObject;
 import metromendeley.infoObject;
+import metromendeley.ListKeywordOBJ;
+import metromendeley.NodeKeywordOBJ;
 
 /**
  *
@@ -26,43 +28,9 @@ public final class Autor extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
-        AllAuthors();
-    }
-    
-        public void AllAuthors() {
-        ListObject lista = GlobalVariables.getObjetos();
-        NodeObject pointer = lista.getHead();
-        int index = 0;
-        while (pointer != null) {
-            infoObject summary = pointer.getElement();
-            String[] autores = summary.getAutores();
-            for (int i = 0; i < autores.length; i++) {        
-                Autores.insertItemAt(autores[i], index);
-                index++;
-            }
-            pointer = pointer.getNext();
-        }
-        //for (int j = 0; i < Autores.getItemListeners().length; i++){ 
-        //String value = String.valueOf(Autores.getItemListeners()[i]);
-        // }
-    }
         
-        public void AllSummaries(){
-            ListObject lista = GlobalVariables.getObjetos();
-            NodeObject pointer = lista.getHead();
-            int index = 0;
-            while (pointer != null) {
-                infoObject summary = pointer.getElement();
-                String[] autores = summary.getAutores();
-                for (int i = 0; i < autores.length; i++) {        
-                    if (autores[i].equals(String.valueOf(Autores.getSelectedItem()))) {
-                        Investigaciones.insertItemAt(summary.getTitle(), index);
-                        index++;
-                    }      
-                }
-                pointer = pointer.getNext();
-            }
-        }
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -76,14 +44,14 @@ public final class Autor extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
-        Investigaciones = new javax.swing.JComboBox<>();
-        Autores = new javax.swing.JComboBox<>();
-        titulos = new javax.swing.JButton();
+        InvestigacionesComboBox = new javax.swing.JComboBox<>();
+        selccionarInvBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        resumen = new javax.swing.JTextArea();
+        OutputTextArea = new javax.swing.JTextArea();
         jlabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        crearInvestigaciones = new javax.swing.JButton();
+        crearInvestigacionesBtn = new javax.swing.JButton();
+        autorNameTextField = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -105,48 +73,53 @@ public final class Autor extends javax.swing.JFrame {
         });
         jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 350, 100, 40));
 
-        Investigaciones.addActionListener(new java.awt.event.ActionListener() {
+        InvestigacionesComboBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                InvestigacionesActionPerformed(evt);
+                InvestigacionesComboBoxActionPerformed(evt);
             }
         });
-        jPanel1.add(Investigaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 290, 30));
+        jPanel1.add(InvestigacionesComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 80, 290, 30));
 
-        jPanel1.add(Autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 80, 140, -1));
-
-        titulos.setBackground(new java.awt.Color(204, 204, 255));
-        titulos.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        titulos.setText("Información de Investigación");
-        titulos.addActionListener(new java.awt.event.ActionListener() {
+        selccionarInvBtn.setBackground(new java.awt.Color(204, 204, 255));
+        selccionarInvBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        selccionarInvBtn.setText("Seleccionar Investigacion");
+        selccionarInvBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                titulosActionPerformed(evt);
+                selccionarInvBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(titulos, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 220, 40));
+        jPanel1.add(selccionarInvBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 120, 220, 40));
 
-        resumen.setColumns(20);
-        resumen.setRows(5);
-        jScrollPane1.setViewportView(resumen);
+        OutputTextArea.setColumns(20);
+        OutputTextArea.setRows(5);
+        jScrollPane1.setViewportView(OutputTextArea);
 
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 190, 470, 150));
 
         jlabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jlabel5.setText("Investigaciones");
-        jPanel1.add(jlabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 50, -1, -1));
+        jlabel5.setText("Investigaciones de este Autor:");
+        jPanel1.add(jlabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 50, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel4.setText("Autores");
+        jLabel4.setText("Autor");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 50, 50, -1));
 
-        crearInvestigaciones.setBackground(new java.awt.Color(204, 255, 204));
-        crearInvestigaciones.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        crearInvestigaciones.setText("Buscar Investigaciones de Autor");
-        crearInvestigaciones.addActionListener(new java.awt.event.ActionListener() {
+        crearInvestigacionesBtn.setBackground(new java.awt.Color(204, 255, 204));
+        crearInvestigacionesBtn.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        crearInvestigacionesBtn.setText("Buscar Investigaciones de Autor");
+        crearInvestigacionesBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                crearInvestigacionesActionPerformed(evt);
+                crearInvestigacionesBtnActionPerformed(evt);
             }
         });
-        jPanel1.add(crearInvestigaciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
+        jPanel1.add(crearInvestigacionesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
+
+        autorNameTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                autorNameTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(autorNameTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 180, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -163,33 +136,47 @@ public final class Autor extends javax.swing.JFrame {
         m.setVisible(true);
     }//GEN-LAST:event_SalirActionPerformed
 
-    private void InvestigacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvestigacionesActionPerformed
+    private void InvestigacionesComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_InvestigacionesComboBoxActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_InvestigacionesActionPerformed
+    }//GEN-LAST:event_InvestigacionesComboBoxActionPerformed
 
-    private void titulosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_titulosActionPerformed
-        Functions v = new Functions();
-        if (Investigaciones.getSelectedItem() == null) {
+    private void selccionarInvBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selccionarInvBtnActionPerformed
+        HashTable1 mainTable = GlobalVariables.getTable();
+        
+        if (InvestigacionesComboBox.getSelectedItem() == null) {
             JOptionPane.showMessageDialog(null, "No agrego ningun elemento.");
         }
         else{
-            String p = GlobalVariables.getTable().buscarObjeto(String.valueOf(Investigaciones.getSelectedItem())).createInfo();
-            resumen.setText(p);
+            infoObject output = mainTable.buscarObjeto((String) InvestigacionesComboBox.getSelectedItem());
+            OutputTextArea.setText(output.createInfo());
         }
-    }//GEN-LAST:event_titulosActionPerformed
+    }//GEN-LAST:event_selccionarInvBtnActionPerformed
 
-    private void crearInvestigacionesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearInvestigacionesActionPerformed
-        int itemCount = Investigaciones.getItemCount();
-            for(int i = 0; i < itemCount; i++){
-            Investigaciones.removeItemAt(0);
+    private void crearInvestigacionesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearInvestigacionesBtnActionPerformed
+        
+        String keywordToSearch = autorNameTextField.getText();
+        
+        HashTable2 keywordTable = GlobalVariables.getKeywordTable();
+        
+        authorTextList= keywordTable.buscarAutor(keywordToSearch);
+        
+        if(authorTextList != null){
+            NodeKeywordOBJ pointer = authorTextList.getHead();
+            while(pointer != null){
+                InvestigacionesComboBox.addItem(pointer.getElement().getTitle());
+                pointer = pointer.getNext();
             }
-        if (Autores.getSelectedItem() == null) {
-            JOptionPane.showMessageDialog(null, "No agrego ningun elemento.");
+//            infoObject output = mainTable.buscarObjeto(obj.getTitle());
+//            OutputTextArea.setText(output.createInfo());
+        }else{
+            JOptionPane.showMessageDialog(this, "El autor no esta en la base de datos.");
         }
-        else{
-            AllSummaries();
-        }  
-    }//GEN-LAST:event_crearInvestigacionesActionPerformed
+        
+    }//GEN-LAST:event_crearInvestigacionesBtnActionPerformed
+
+    private void autorNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_autorNameTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_autorNameTextFieldActionPerformed
 
     /**
      * @param args the command line arguments
@@ -226,19 +213,19 @@ public final class Autor extends javax.swing.JFrame {
             }
         });
     }
-
+    private ListKeywordOBJ authorTextList;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> Autores;
-    private javax.swing.JComboBox<String> Investigaciones;
+    private javax.swing.JComboBox<String> InvestigacionesComboBox;
+    private javax.swing.JTextArea OutputTextArea;
     private javax.swing.JButton Salir;
-    private javax.swing.JButton crearInvestigaciones;
+    private javax.swing.JTextField autorNameTextField;
+    private javax.swing.JButton crearInvestigacionesBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlabel5;
-    private javax.swing.JTextArea resumen;
-    private javax.swing.JButton titulos;
+    private javax.swing.JButton selccionarInvBtn;
     // End of variables declaration//GEN-END:variables
 }

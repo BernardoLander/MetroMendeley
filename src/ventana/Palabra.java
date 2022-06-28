@@ -3,7 +3,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ventana;
-
+import javax.swing.JOptionPane;
+import metromendeley.GlobalVariables;
+import metromendeley.HashTable2;
+import metromendeley.KeyWordObject;
+import metromendeley.HashTable1;
+import metromendeley.infoObject;
 /**
  *
  * @author leste
@@ -31,6 +36,11 @@ public class Palabra extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         Salir = new javax.swing.JButton();
+        KeywordTextField = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        Buscarbtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        OutputTextArea = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,6 +62,30 @@ public class Palabra extends javax.swing.JFrame {
         });
         jPanel1.add(Salir, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 350, 100, 40));
 
+        KeywordTextField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KeywordTextFieldActionPerformed(evt);
+            }
+        });
+        jPanel1.add(KeywordTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 140, -1));
+
+        jLabel3.setText("Escriba la palabra clave por la que desea buscar:");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 80, -1, -1));
+
+        Buscarbtn.setText("Buscar");
+        Buscarbtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BuscarbtnActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Buscarbtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 110, -1, -1));
+
+        OutputTextArea.setColumns(20);
+        OutputTextArea.setRows(5);
+        jScrollPane1.setViewportView(OutputTextArea);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 170, 420, 160));
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/palabrasclaves.jpg"))); // NOI18N
         jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 400));
 
@@ -65,6 +99,28 @@ public class Palabra extends javax.swing.JFrame {
         this.setVisible(false);
         m.setVisible(true);
     }//GEN-LAST:event_SalirActionPerformed
+
+    private void KeywordTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KeywordTextFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KeywordTextFieldActionPerformed
+
+    private void BuscarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarbtnActionPerformed
+        HashTable1 mainTable = GlobalVariables.getTable();
+        String keywordToSearch = KeywordTextField.getText();
+        
+        HashTable2 keywordTable = GlobalVariables.getKeywordTable();
+        
+        KeyWordObject obj = keywordTable.buscarKeyWord(keywordToSearch);
+        
+        if(obj != null){
+            infoObject output = mainTable.buscarObjeto(obj.getTitle());
+            OutputTextArea.setText(output.createInfo());
+        }else{
+            JOptionPane.showMessageDialog(this, "La palabra Clave no esta en la base de datos");
+        }
+        
+
+    }//GEN-LAST:event_BuscarbtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -102,9 +158,14 @@ public class Palabra extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Buscarbtn;
+    private javax.swing.JTextField KeywordTextField;
+    private javax.swing.JTextArea OutputTextArea;
     private javax.swing.JButton Salir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

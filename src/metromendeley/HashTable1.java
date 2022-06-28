@@ -10,7 +10,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author dario
+ * @author leste
  */
 
 public class HashTable1 {
@@ -184,4 +184,10 @@ public class HashTable1 {
             this.tabla[i] = null; 
         }
     }
+    
+    public void insertarClave(KeyWordObject elemento){
+//            Inserta objeto de palabra clave con titulo para busqueda por palabra clave 01
+
+        
+    } 
 }

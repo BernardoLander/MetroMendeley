@@ -92,7 +92,8 @@ public class Functions {
            
                
         String[] autores = autor.split(",");
-        
+        addToKeywordTable(keywords, title);
+        addToAuthorTable(autores, title);
         info.setTitle(title);
         info.setAutores(autores);
         info.setSummary(summary);
@@ -123,6 +124,23 @@ public class Functions {
             contador++;
         }
         return contador;
+    }
+
+    private void addToKeywordTable(String[] keywords, String title) {
+        HashTable2 table = GlobalVariables.getKeywordTable();
+        for (int i = 0; i < keywords.length; i++) {
+            KeyWordObject temp = new KeyWordObject(keywords[i], title);
+            table.insertar(temp);
+        }
+        
+    }
+
+    private void addToAuthorTable(String[] autores, String title) {
+        HashTable2 table = GlobalVariables.getKeywordTable();
+        for (int i = 0; i < autores.length; i++) {
+            KeyWordObject temp = new KeyWordObject(autores[i], title);
+            table.insertar(temp);
+        }
     }
      
 }

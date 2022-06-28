@@ -12,6 +12,8 @@ public class GlobalVariables {
     private static HashTable1 table = new HashTable1(1000);
     private static List lista = new List(null);
     private static ListObject objetos = new ListObject(null);
+    private static HashTable2 keywordTable = new HashTable2(1000);
+    private static HashTable2 authorTable = new HashTable2(1000);
 
     /**
      * @return the table
@@ -53,6 +55,22 @@ public class GlobalVariables {
      */
     public static void setObjetos(ListObject aObjetos) {
         objetos = aObjetos;
+    }
+
+    public static HashTable2 getKeywordTable() {
+        return keywordTable;
+    }
+
+    public static void setKeywordTable(HashTable2 keywordTable) {
+        GlobalVariables.keywordTable = keywordTable;
+    }
+
+    public static HashTable2 getAuthorTable() {
+        return authorTable;
+    }
+
+    public static void setAuthorTable(HashTable2 authorTable) {
+        GlobalVariables.authorTable = authorTable;
     }
     
 }
