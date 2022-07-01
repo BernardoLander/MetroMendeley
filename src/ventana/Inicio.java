@@ -89,10 +89,13 @@ public class Inicio extends javax.swing.JFrame {
         for (int i = 0; i < textLineSplit.length; i++) {
             String summary = functions.readText(textLineSplit[i]);
             infoObject object = functions.createObjects(summary);
+
             if (!GlobalVariables.getTable().buscar2(object)) {
                 GlobalVariables.getLista().insertEnd(object.getTitle());
                 GlobalVariables.getTable().insertar(object);
                 GlobalVariables.getObjetos().insertEnd(object);
+                functions.addToAuthorTable(object.getAutores(), object.getTitle());
+                functions.addToKeywordTable(object.getKeywords(), object.getTitle());
             }
         }
         Menu m = new Menu();

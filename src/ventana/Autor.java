@@ -165,11 +165,12 @@ public final class Autor extends javax.swing.JFrame {
 
     private void crearInvestigacionesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearInvestigacionesBtnActionPerformed
         
-        String keywordToSearch = String.valueOf(Autores.getSelectedItem());
+        String keywordToSearch = (String) Autores.getSelectedItem();
+        System.out.println(keywordToSearch);
         
-        HashTable2 keywordTable = GlobalVariables.getKeywordTable();
+        HashTable2 authorTable = GlobalVariables.getAuthorTable();
         
-        authorTextList= keywordTable.buscarAutor(keywordToSearch);
+        authorTextList= authorTable.buscarAutor(keywordToSearch);
         
         if(authorTextList != null){
             NodeKeywordOBJ pointer = authorTextList.getHead();
@@ -177,8 +178,6 @@ public final class Autor extends javax.swing.JFrame {
                 InvestigacionesComboBox.addItem(pointer.getElement().getTitle());
                 pointer = pointer.getNext();
             }
-//            infoObject output = mainTable.buscarObjeto(obj.getTitle());
-//            OutputTextArea.setText(output.createInfo());
         }else{
             JOptionPane.showMessageDialog(this, "El autor no esta en la base de datos.");
         }

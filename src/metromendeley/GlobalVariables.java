@@ -12,8 +12,8 @@ public class GlobalVariables {
     private static HashTable1 table = new HashTable1(1000);
     private static List lista = new List(null);
     private static ListObject objetos = new ListObject(null);
-    private static HashTable2 keywordTable = new HashTable2(1000);
-    private static HashTable2 authorTable = new HashTable2(1000);
+    private static HashTable2 keywordTable = new HashTable2(1009);
+    private static HashTable2 authorTable = new HashTable2(1009);
 
     /**
      * @return the table

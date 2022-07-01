@@ -131,6 +131,8 @@ public class Agregar extends javax.swing.JFrame {
                 GlobalVariables.getLista().insertEnd(summary.getTitle());
                 GlobalVariables.getObjetos().insertEnd(summary);
                 functions.writeText(PathDisplay.getText());
+                functions.addToAuthorTable(summary.getAutores(), summary.getTitle());
+                functions.addToKeywordTable(summary.getKeywords(), summary.getTitle());
             }
             else{
                 JOptionPane.showMessageDialog(null, "Ya existe el elemento. No se agrega.");
