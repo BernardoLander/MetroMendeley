@@ -168,6 +168,12 @@ public final class Autor extends javax.swing.JFrame {
         String keywordToSearch = (String) Autores.getSelectedItem();
         System.out.println(keywordToSearch);
         
+        int itemCount = InvestigacionesComboBox.getItemCount();
+
+        for(int i = 0; i < itemCount; i++){
+            InvestigacionesComboBox.removeItemAt(0);
+        }
+        
         HashTable2 authorTable = GlobalVariables.getAuthorTable();
         
         authorTextList= authorTable.buscarAutor(keywordToSearch);
