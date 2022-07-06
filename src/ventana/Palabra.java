@@ -114,19 +114,26 @@ public class Palabra extends javax.swing.JFrame {
     }//GEN-LAST:event_SalirActionPerformed
 
     private void BuscarbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BuscarbtnActionPerformed
-        HashTable1 mainTable = GlobalVariables.getTable();
-        String keywordToSearch = String.valueOf(Palabras.getSelectedItem());
         
-        HashTable2 keywordTable = GlobalVariables.getKeywordTable();
-        
-        KeyWordObject obj = keywordTable.buscarKeyWord(keywordToSearch);
-        
-        if(obj != null){
-            infoObject output = mainTable.buscarObjeto(obj.getTitle());
-            OutputTextArea.setText(output.createInfo());
-        }else{
-            JOptionPane.showMessageDialog(this, "La palabra Clave no esta en la base de datos");
+        if (Palabras.getSelectedItem() == null || Palabras.getSelectedItem() == "") {
+            JOptionPane.showMessageDialog(null, "No agrego ningun elemento.");
         }
+        else{
+            HashTable1 mainTable = GlobalVariables.getTable();
+            String keywordToSearch = String.valueOf(Palabras.getSelectedItem());
+
+            HashTable2 keywordTable = GlobalVariables.getKeywordTable();
+
+            KeyWordObject obj = keywordTable.buscarKeyWord(keywordToSearch);
+
+            if(obj != null){
+                infoObject output = mainTable.buscarObjeto(obj.getTitle());
+                OutputTextArea.setText(output.createInfo());
+            }else{
+                JOptionPane.showMessageDialog(this, "La palabra Clave no esta en la base de datos");
+            } 
+        }
+
         
 
     }//GEN-LAST:event_BuscarbtnActionPerformed

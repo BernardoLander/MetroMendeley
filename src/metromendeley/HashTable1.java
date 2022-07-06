@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 
 public class HashTable1 {
     Nodo tabla[];  //array de nodos
-    int size; //número primo (se tomó 10111)
+    int size; //número (se tomó 1000)
     
     public HashTable1(int size){
         this.size = size; 
@@ -67,7 +67,7 @@ public class HashTable1 {
         int index = valor % size;
         /**
          * Index se refiere al índice del array del elemento.
-         * De esta manera adaptamos el valor del nombre del animal 
+         * De esta manera adaptamos el valor del nombre de la investigacion 
          * según código ASCII al tamaño de la tabla. 
          */
         return index; 
@@ -102,15 +102,15 @@ public class HashTable1 {
             if (!existe){
                 Nodo nuevo = new Nodo(summary); 
                 temp.setNext(nuevo); 
-                System.out.println("    Añadimos: " + summary);
-                System.out.println("        En posición: " + posicion);
+//                System.out.println("    Añadimos: " + summary);
+//                System.out.println("        En posición: " + posicion);
             }
             
         } else {
             Nodo nuevo = new Nodo(summary); 
             this.tabla[posicion] = nuevo;  
-            System.out.println("    Añadimos: " + summary);
-            System.out.println("        En posición: " + posicion);
+//            System.out.println("    Añadimos: " + summary);
+//            System.out.println("        En posición: " + posicion);
         }
         
     }
@@ -127,15 +127,17 @@ public class HashTable1 {
         
         if (temp.getData().equals(summary)){
             existe = true; 
-        } else {
-            while (temp.getNext() != null && !existe){
-                if (temp.getData().equals(summary)){
-                    existe = true; 
-                } else {
-                    temp = temp.getNext(); 
-                }
-            }
         }
+            
+//        } else {
+//            while (temp.getNext() != null && !existe){
+//                if (temp.getData().equals(summary)){
+//                    existe = true; 
+//                } else {
+//                    temp = temp.getNext(); 
+//                }
+//            }
+//        }
         
         if (existe){
             return temp; 
@@ -169,12 +171,11 @@ public class HashTable1 {
     }     
     
     public infoObject buscarObjeto(String title){ 
-        int cont = 0;
-        Nodo temp = this.tabla[cont];
-        while (temp == null || !temp.getData().getTitle().equals(title)){
-            cont++;
-            temp = this.tabla[cont];  
+        int posicion = hashing(title); 
+        if (this.tabla[posicion] == null){
+            return null;
         }
+        Nodo temp = this.tabla[posicion];
         
         return temp.getData();
     }   

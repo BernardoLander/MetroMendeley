@@ -130,6 +130,11 @@ public final class Autor extends javax.swing.JFrame {
         });
         jPanel1.add(crearInvestigacionesBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 120, -1, 30));
 
+        Autores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AutoresActionPerformed(evt);
+            }
+        });
         jPanel1.add(Autores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, 170, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/busqueda.jpg"))); // NOI18N
@@ -165,8 +170,12 @@ public final class Autor extends javax.swing.JFrame {
 
     private void crearInvestigacionesBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_crearInvestigacionesBtnActionPerformed
         
+        if (Autores.getSelectedItem() == null || Autores.getSelectedItem() == "") {
+            JOptionPane.showMessageDialog(null, "No agrego ningun elemento.");
+        }
+        else{
         String keywordToSearch = (String) Autores.getSelectedItem();
-        System.out.println(keywordToSearch);
+//        System.out.println(keywordToSearch);
         
         int itemCount = InvestigacionesComboBox.getItemCount();
 
@@ -187,8 +196,15 @@ public final class Autor extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(this, "El autor no esta en la base de datos.");
         }
+        }
+        
+
         
     }//GEN-LAST:event_crearInvestigacionesBtnActionPerformed
+
+    private void AutoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AutoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_AutoresActionPerformed
 
     /**
      * @param args the command line arguments

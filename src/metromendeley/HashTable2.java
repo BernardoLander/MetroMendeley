@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 
 public class HashTable2 {
     KeyWordObject tabla[];  //array de nodos
-    int size; //número primo (se tomó 10111)
+    int size; //número (se tomó 1000)
     
     public HashTable2(int size){
         this.size = size; 
@@ -74,12 +74,12 @@ public class HashTable2 {
     
     public void insertar(KeyWordObject keytitlepair){
         int posicion = hashingkeyword(keytitlepair.getKeyword());  
-        System.out.println("hash" + posicion);
+//        System.out.println("hash" + posicion);
         while(posicion < this.tabla.length){
             if (this.tabla[posicion] == null){
                 this.tabla[posicion] = keytitlepair;  
-                System.out.println("    Aadimos: " + keytitlepair.getKeyword());
-                System.out.println("        En posición: " + posicion);
+//                System.out.println("    Aadimos: " + keytitlepair.getKeyword());
+//                System.out.println("        En posición: " + posicion);
                 break;
             }else{
                 posicion++;
@@ -89,15 +89,15 @@ public class HashTable2 {
     
     public KeyWordObject buscarKeyWord(String key){
         int index = hashingkeyword(key);
-        System.out.println("indice a buscar " + index);
-        System.out.println("palabra a buscar" + key);
+//        System.out.println("indice a buscar " + index);
+//        System.out.println("palabra a buscar" + key);
         
         while (index < this.tabla.length){
             
             if (this.tabla[index].getKeyword().equals(key)){
                 
-                System.out.println("Conseguido" + key);
-                System.out.println("Indice" + index);
+//                System.out.println("Conseguido" + key);
+//                System.out.println("Indice" + index);
                 return this.tabla[index];   
             }
             index ++;
@@ -107,15 +107,15 @@ public class HashTable2 {
     public ListKeywordOBJ buscarAutor(String key){
         int index = hashingkeyword(key);
         ListKeywordOBJ autorRepetido = new ListKeywordOBJ();
-        System.out.println(index);
-        System.out.println(this.tabla[index]);
+//        System.out.println(index);
+//        System.out.println(this.tabla[index]);
         while (index < this.tabla.length){
             
             if (!this.tabla[index].getKeyword().equals(key)){
             } else {
                 while(this.tabla[index]!= null&& this.tabla[index].getKeyword().equals(key)){
-                    System.out.println("Conseguido" + key);
-                    System.out.println("Indice" + index);
+//                    System.out.println("Conseguido" + key);
+//                    System.out.println("Indice" + index);
                     NodeKeywordOBJ element = new NodeKeywordOBJ(this.tabla[index]);
                     autorRepetido.insertEnd(element);
                     index++;

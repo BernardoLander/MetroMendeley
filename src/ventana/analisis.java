@@ -121,7 +121,7 @@ public final class analisis extends javax.swing.JFrame {
 
     private void agregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_agregarActionPerformed
         Functions v = new Functions();
-        if (Titulos.getSelectedItem() == null) {
+        if (Titulos.getSelectedItem() == null || Titulos.getSelectedItem() == "") {
             JOptionPane.showMessageDialog(null, "No agrego ningun elemento.");
         }
         else{
